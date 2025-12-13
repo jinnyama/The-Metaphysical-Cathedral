@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         background.sprite=image[0];
         book = GameObject.Find("Book").GetComponent<SpriteRenderer>();
         sign = GameObject.Find("Sign").GetComponent<SpriteRenderer>();
-        black = GameObject.Find("Blackground").GetComponent<SpriteRenderer>();
+        black = GameObject.Find("BlackBoard").GetComponent<SpriteRenderer>();
 
         // 初期状態は透明
         Color c=book.color;
