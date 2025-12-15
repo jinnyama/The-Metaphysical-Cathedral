@@ -1329,7 +1329,6 @@ MonoBehaviour:
   - {fileID: -3166385343407559715, guid: ecc72b53d65d96e42b13fab8710200d3, type: 3}
   - {fileID: 2552742034543845380, guid: 3eb37050f1fdfc64789dd0542097556e, type: 3}
   - {fileID: -6400170718156888037, guid: 088c925c273fe704c8c7eb8492722973, type: 3}
-  duration: 1
   Background: {fileID: 1442283721}
   Gamemode: 
   IsBookmodecheak: 0
