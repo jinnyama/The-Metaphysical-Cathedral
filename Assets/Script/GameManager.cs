@@ -41,25 +41,25 @@ public class GameManager : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.B) && Gamemode == "")
         {
-            StartCoroutine(FadeIn(book,1.0f));
+            StartCoroutine(FadeIn(book,1.0f, Color.white));
             Gamemode = "bookmode";
             //IsBookmodecheak = true;
         }
         if (Input.GetKeyDown(KeyCode.Escape) && Gamemode=="bookmode" )
         {
-            StartCoroutine(FadeOut(book,1.0f));
+            StartCoroutine(FadeOut(book,1.0f,Color.white));
             Gamemode = "";
             //IsBookmodecheak = false;
         }
         if (Input.GetKeyDown(KeyCode.Space) && Gamemode == "")
         {
-            StartCoroutine(FadeIn(sign,0.5f));
+            StartCoroutine(FadeIn(sign,0.5f, Color.gray));
             Gamemode= "signmode";
             //IsSignmodecheak = true;
         }
         if (Input.GetKeyDown(KeyCode.Escape) && Gamemode=="signmode")
         {
-            StartCoroutine(FadeOut(sign,0.5f));
+            StartCoroutine(FadeOut(sign,0.5f, Color.gray));
             Gamemode = "";
             //IsSignmodecheak = false;
         }
@@ -75,38 +75,34 @@ public class GameManager : MonoBehaviour
             if (TextScript.Instance.choisetext == "晴れて")
             {
                 TextScript.Instance.pastetext.color = Color.red;
-                StartCoroutine(FadeIn(black,1.0f));
+                StartCoroutine(FadeIn(black,1.0f, Color.black));
                 background.sprite = image[1];
-                StartCoroutine(FadeOut(black,1.0f));
+                StartCoroutine(FadeOut(black,1.0f, Color.black));
             }
         }
 
 
 
     }
-    private System.Collections.IEnumerator FadeIn(SpriteRenderer spr,float duration )
+    private System.Collections.IEnumerator FadeIn(SpriteRenderer spr,float duration,Color c )
     {
         float elapsed = 0f;
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-            Color c = spr.color;
-            c= Color.gray;
             c.a = t;
             spr.color = c;
             yield return null;
         }
     }
-    private System.Collections.IEnumerator FadeOut(SpriteRenderer spr,float duration)
+    private System.Collections.IEnumerator FadeOut(SpriteRenderer spr,float duration,Color c )
     {
         float elapsed = 0.5f;
         while (elapsed >0)
         {
             elapsed -= Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-            Color c = spr.color;
-            c= Color.gray;
             c.a = t;
             
             spr.color = c;
