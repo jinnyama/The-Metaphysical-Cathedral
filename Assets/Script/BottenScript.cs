@@ -21,7 +21,7 @@ public class BottenScript : MonoBehaviour
         switch (quiznumber)
         {
             case 0 when GameManager.Instance.Gamemode == "bookmode": 
-                TextScript.Instance.choisetext = "ê∞ÇÍÇƒ";
+                TextScript.Instance.choisetext = "Êô¥„Çå„Å¶";
                 TextScript.Instance.diarytext[quiznumber].color = Color.yellow;
                 break;
             case 1 when GameManager.Instance.Gamemode == "signmode":
