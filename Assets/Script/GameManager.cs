@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public   Sprite[] image;
-    public float duration = 1.0f; // 表示にかける時間（秒）
     private SpriteRenderer book;
     private SpriteRenderer sign;//看板
     private SpriteRenderer black;
@@ -24,7 +23,7 @@ public class GameManager : MonoBehaviour
         background.sprite=image[0];
         book = GameObject.Find("Book").GetComponent<SpriteRenderer>();
         sign = GameObject.Find("Sign").GetComponent<SpriteRenderer>();
-        black = GameObject.Find("Blackground").GetComponent<SpriteRenderer>();
+        black = GameObject.Find("BlackBoard").GetComponent<SpriteRenderer>();
 
         // 初期状態は透明
         Color c=book.color;
@@ -42,25 +41,25 @@ public class GameManager : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.B) && Gamemode == "")
         {
-            StartCoroutine(FadeIn(book));
+            StartCoroutine(FadeIn(book,1.0f, Color.white));
             Gamemode = "bookmode";
             //IsBookmodecheak = true;
         }
         if (Input.GetKeyDown(KeyCode.Escape) && Gamemode=="bookmode" )
         {
-            StartCoroutine(FadeOut(book));
+            StartCoroutine(FadeOut(book,1.0f,Color.white));
             Gamemode = "";
             //IsBookmodecheak = false;
         }
         if (Input.GetKeyDown(KeyCode.Space) && Gamemode == "")
         {
-            StartCoroutine(FadeIn(sign));
+            StartCoroutine(FadeIn(sign,0.5f, Color.gray));
             Gamemode= "signmode";
             //IsSignmodecheak = true;
         }
         if (Input.GetKeyDown(KeyCode.Escape) && Gamemode=="signmode")
         {
-            StartCoroutine(FadeOut(sign));
+            StartCoroutine(FadeOut(sign,0.5f, Color.gray));
             Gamemode = "";
             //IsSignmodecheak = false;
         }
@@ -76,37 +75,36 @@ public class GameManager : MonoBehaviour
             if (TextScript.Instance.choisetext == "晴れて")
             {
                 TextScript.Instance.pastetext.color = Color.red;
-                StartCoroutine(FadeIn(black));
+                StartCoroutine(FadeIn(black,1.0f, Color.black));
                 background.sprite = image[1];
-                StartCoroutine(FadeOut(black));
+                StartCoroutine(FadeOut(black,1.0f, Color.black));
             }
         }
 
 
 
     }
-    private System.Collections.IEnumerator FadeIn(SpriteRenderer spr)
+    private System.Collections.IEnumerator FadeIn(SpriteRenderer spr,float duration,Color c )
     {
         float elapsed = 0f;
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-            Color c = spr.color;
             c.a = t;
             spr.color = c;
             yield return null;
         }
     }
-    private System.Collections.IEnumerator FadeOut(SpriteRenderer spr)
+    private System.Collections.IEnumerator FadeOut(SpriteRenderer spr,float duration,Color c )
     {
-        float elapsed = 1f;
+        float elapsed = 0.5f;
         while (elapsed >0)
         {
             elapsed -= Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-            Color c = spr.color;
             c.a = t;
+            
             spr.color = c;
             yield return null;
         }

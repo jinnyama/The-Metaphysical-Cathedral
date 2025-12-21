@@ -9,8 +9,8 @@ public class TextScript : MonoBehaviour
     public Text copytext;
     public Text pastetext;
     public Text signtext;
-    public  string[] Text= {"�����","�܂���"};
-    private string signText="�󂪁@�@�@����";
+    public  string[] Text= {"晴れて","曇って"};
+    private string[] signText={"空が　　　いる","　　　　　　　いる祠",　"がかかっている","檻に　　　　いる"};
     public static TextScript Instance;
     
     public string choisetext;
@@ -34,7 +34,7 @@ public class TextScript : MonoBehaviour
         if (GameManager.Instance.Gamemode == "signmode")
         {
             pastetext.text = Text[1];
-            signtext.text= signText;
+            signtext.text= signText[0];
         }
         if (GameManager.Instance.Gamemode == "")
         {
